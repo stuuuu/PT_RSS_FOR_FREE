@@ -1,15 +1,15 @@
 '''
 python 3.7
-修改line12 rss_name = 
 '''
 import json,time
 from rss_ny import rss
 from free_ny import free
 from download_ny import download
+import sys
 
 if __name__ == "__main__":
+    rss_name = sys.argv[1]
     while 1:       
-        rss_name = 'nanyang'
         try:
             print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'  '+'rss启动')
             rss_content = rss(rss_name).getinfo()
