@@ -38,7 +38,7 @@ import time
 
 def download(rss_content,rss_name):
     if not rss_content:return {}
-    downloaded = {}
+    downloaded = []
     with open('config.json','r') as f:
         config = json.load(f)
         torlink = config[rss_name]["torlink"].split()
@@ -52,12 +52,13 @@ def download(rss_content,rss_name):
         for tyies in range(1,maxtyies):
             try:
                 request.urlretrieve(bt_link,path+tor_id+'.torrent')
-                downloaded[tor_id] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+                downloaded.append(tor_id)
+                print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'  '+"ID:{}下载成功 TITLE:{} SIZE:{}GB".format(tor_id,rss_content[tor_id]['title'],rss_content[tor_id]['size']))
                 break     
             except:
                 print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'  '+tor_id+'下载失败，重试第'+str(tyies)+'次中')
                 if tyies == 5:
-                    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'  '+'GG,下一个')
+                    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'  '+'GG,下一个')          
     return downloaded
 
 if __name__ == "__main__":
