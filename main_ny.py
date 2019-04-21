@@ -8,7 +8,7 @@ from download_ny import download
 import sys
 
 if __name__ == "__main__":
-    rss_name = 'nanyang'#sys.argv[1]
+    rss_name = sys.argv[1]
     while 1:
 
         #读取已经下载的种子id   type(tor_dl_id) = list
