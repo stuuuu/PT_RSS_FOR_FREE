@@ -1,31 +1,3 @@
-
-'''
-python 3.7
-根据种子ID和页面链接判断优惠，目前只搞了判断free
-
-输入输出rss_content格式：   #就是rss(config.rss_name).getinfo()输出的东西
-{
-    ID1：{},
-    ID2：{},
-    ID3：{},
-    ...
-}
-输出结果会把不符合优惠条件的key删掉
-
-使用方法:
-
-需提前配置config.json
-{
-    rss_name:{            #随便什么str，起个名字就好，记得加双引号
-    "cookies":cookies     # 网站的cookie  chorme 为例  F12→Network→F5→点最上面链接→Request Header里的cookie 字串全部
-    "pagelink":pagelink   #种子的详情页面链接前缀，一般都是"https://xxx.com/details.php?id="，其实可以从自动从rss链接里提取但是懒得改了ε=(´ο｀*)))
-    }
-}
-
-import free from free_ny
-rss_content = free(rss_content,rss_name)
-
-'''
 import re
 import json
 from urllib import request
@@ -46,7 +18,7 @@ def free(rss_content,rss_name):
         for tyies in range(1,maxtyies):
             try:
                 id_request=request.Request(url=id_link,headers=headers)
-                html=request.urlopen(id_request).read().decode('utf-8','ignore')
+                html=request.urlopen(id_request,timeout=30).read().decode('utf-8','ignore')
                 title=re.findall('<h1 align="center" id="top">(.+?)</h1>',html)[0]
                 try:
                     youhui = re.findall('<b>(.+?)</b>',title)[0]

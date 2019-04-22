@@ -52,7 +52,7 @@ if __name__ == "__main__":
                 json.dump(tor_dl_id,f)
         
         #循环间隔 单位秒
-        sleep = 30
+        sleep = 300
         for  x in range(sleep,-1,-1):
             djs = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'  '+'sleep倒计时'+str(x)+'秒'
             print(djs,end = "")

@@ -1,36 +1,3 @@
-'''
-python 3.7
-根据种子ID和下载链接下载种子
-
-输入rss_content格式：   #就是rss(config.rss_name).getinfo()输出的东西
-{
-    ID1：{},
-    ID2：{},
-    ID3：{},
-    ...
-}
-输出downloaded格式：    #已经下载的种子
-{
-    ID1：time,
-    ID2：time,
-    ID3：time,
-    ...
-}
-
-使用方法:
-
-需提前配置config.json
-{
-    rss_name:{            #随便什么str，起个名字就好，记得加双引号
-    "torlink":         #种子的下载链接，一般都是"https://xxx.com/download.php?id= &passkey=xxx"，种子ID处留个空格，这一条主要是为了下V6种子
-    "path":            #种子保存目录 不填就是当前目录  记得用反斜线 例如"e:/"
-    }
-}
-
-import download from download_ny
-downloaded = download(rss_content,rss_name)
-
-'''
 import json
 from urllib import request
 import time
@@ -51,7 +18,7 @@ def download(rss_content,rss_name):
         maxtyies = 6
         for tyies in range(1,maxtyies):
             try:
-                request.urlretrieve(bt_link,path+tor_id+'.torrent')
+                request.urlretrieve(bt_link,path+rss_name+tor_id+'.torrent')
                 downloaded.append(tor_id)
                 print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'  '+"ID:{}下载成功 TITLE:{} SIZE:{}GB".format(tor_id,rss_content[tor_id]['title'],rss_content[tor_id]['size']))
                 break     

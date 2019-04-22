@@ -1,30 +1,3 @@
-'''
-python 3.7
-rss类
-从rss链接提取种子ID、大小、名字
-链接失败5次后会返回空气
-
-使用方法：
-
-需提前配置config.json
-{
-    rss_name:{         #随便什么str，起个名字就好,记得加双引号
-    "link":rss_link,    #rss链接，订阅时勾选标题和大小即可
-    "sizerule":sizerule,   #体积大小的格式，一般都是["KB","MB","GB","TB"]，但也有例外比如U2就是KiB，所以加上了
-    "sizefilter":[-1,99999] #体积大小范围，单位是GB，不在范围内的rss会被直接筛掉
-    }
-}
-
-from rss_ny import rss  
-res  = rss(config.rss_name).getinfo()    #config里可以保存多个rss配置，这里填要用的rss_name
-
-res 格式
-{ID：{
-    'title':title_str,
-    'size'size_float:
-}}
-'''
-
 from xml.etree import ElementTree
 from urllib import request
 from io import BytesIO
@@ -43,7 +16,7 @@ class rss():
         for tyies in range(1,maxtry):
             try:
                 rss_html = request.Request(url = self.rss_link,headers = headers)
-                f = BytesIO(request.urlopen(rss_html).read())
+                f = BytesIO(request.urlopen(rss_html,timeout=30).read())
                 break
             except:
                 print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'  '+'rss网络连接失败，重试第'+str(tyies)+'次中')
