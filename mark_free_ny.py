@@ -52,13 +52,21 @@ if __name__ == "__main__":
         sizefilter = config[rss_name]["sizefilter"]
         PageLink = config[rss_name]["torpage"]
         getstar = config[rss_name]["booklink"]
-    PageLink = 'https://nanyangpt.com/torrents.php?inclbookmarked=1&allsec=1&incldead=0'
     tor_info = get_info(PageLink,cookies,sizerule)
     headers= {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36',
                   'cookie':cookies}
     for tor_id in list(tor_info):
         if  not tor_info[tor_id][0] and  sizefilter[0]<tor_info[tor_id][2]<sizefilter[1] and tor_info[tor_id][1] =='free':
             print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'  '+tor_info[tor_id][3])
-            get = request.Request(url=getstar+tor_id,headers=headers)            
-            page = request.urlopen(get).read()
+            maxtry = 4
+            for tyies in range(1,maxtry):
+                try:
+                    get = request.Request(url=getstar+tor_id,headers=headers)            
+                    page = request.urlopen(get).read()
+                except:
+                    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'  '+'网络连接失败，重试第'+str(tyies)+'次中')
+                    if tyies == 3:
+                        print('GG')
+                    continue            
+
 

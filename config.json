@@ -1,4 +1,16 @@
 {
+    config_name:{
+        "link":,
+        "sizerule":,
+        "sizefilter":,
+        "pagelink":,
+        "cookies":,
+        "torlink":,
+        "path": ,
+        "torpage":,
+        "booklink":
+    
+    },
     "nanyang":{
         "link":"https://nanyangpt.com/torrentrss.php?rows=10&isize=1&linktype=dl&passkey=xxx",
         "sizerule":["KB","MB","GB","TB"],
@@ -6,7 +18,9 @@
         "pagelink":"https://nanyangpt.com/details.php?id=",
         "cookies":"_ga=xxx; c_secure_uid=xxx; c_secure_pass=xxx; c_secure_ssl=xxx; c_secure_tracker_ssl=xxx; c_secure_login=xxx; __cfduid=xxx; _gid=xxx",
         "torlink":"https://nanyangpt.com/download.php?id= &passkey=xxx",
-        "path": ""
+        "path": "e:/",
+        "torpage":"https://nanyangpt.com/torrents.php",
+        "booklink":"https://nanyangpt.com/bookmark.php?torrentid="
     
     },
     "mt":{
@@ -16,7 +30,9 @@
         "pagelink":"https://tp.m-team.cc/details.php?id=",
         "cookies":"tp=xxx",
         "torlink":"https://tp.m-team.cc/download.php?id= &passkey=xxx&ipv6=1&https=1",
-        "path":""
+        "path":"",
+        "torpage":"",
+        "booklink":""
 
     }
 }
