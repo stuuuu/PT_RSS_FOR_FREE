@@ -4,6 +4,7 @@
 可以从RSS里获取种子ID，判断是否FREE后下载；可以通过种子php页面收藏所有免费种子。<br>
 
 ##使用方法
+
 ###1 配置
 
 | 参数 | 类型 |说明|
@@ -20,6 +21,7 @@
 |booklink|str|种子收藏链接前缀 |
 
 ###2 使用
+
 RSS下载种子
 ```powershell
 py main_ny.py config.keys
