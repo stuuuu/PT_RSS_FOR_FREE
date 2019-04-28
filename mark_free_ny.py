@@ -20,7 +20,7 @@ def get_info(PageLink,cookies,sizerule):
                 return {}
             continue
     torrentinfo=re.finditer('<table class="torrentname" width="100%">(.+?)<td class="rowfollow nowrap" valign="middle"',html,re.S)
-    maxfind = 2
+    maxfind = 90
     nowfind = 0
     res = {}
     for p in torrentinfo:
