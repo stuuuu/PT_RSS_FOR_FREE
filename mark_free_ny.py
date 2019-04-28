@@ -12,6 +12,7 @@ def get_info(PageLink,cookies,sizerule):
         try:
             _request=request.Request(url=PageLink,headers=headers)
             html=request.urlopen(_request,timeout=30).read().decode('utf-8','ignore')
+            break
         except:
             print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'  '+'网络连接失败，重试第'+str(tyies)+'次中')
             if tyies == 3:
