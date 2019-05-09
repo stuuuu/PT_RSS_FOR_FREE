@@ -37,7 +37,7 @@ class rss():
                     ind = tor_title.index('[')
                     title = tor_title[ind+1:][::-1]
                     size = tor_title[1:ind][::-1].split()
-                    size = float(size[0])*10**(self.sizerule.index(size[1])-2)
+                    size = float(size[0])*10**((self.sizerule.index(size[1])-2)*3)
                     tor_title = {'title':title,
                                 'size':size}
                 if emement.tag == 'link':
