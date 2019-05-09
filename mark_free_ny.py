@@ -37,7 +37,7 @@ def get_info(PageLink,cookies,sizerule):
         tor_seed =  0 if 'red' in tor_size else int(re.findall('seeders">(.+?)</a>',tor_size)[0])
         tor_time =  ' '.join(re.findall('<td class="rowfollow nowrap">(.+?)<br />(.+?)</td>',tor_size)[0])
         tor_size =  re.findall('class="rowfollow">(.+?)<br />(.+?)</td>',tor_size)[0]
-        tor_size = float(tor_size[0])*10**(sizerule.index(tor_size[1])-2)
+        tor_size = float(tor_size[0])*10**((self.sizerule.index(size[1])-2)*3)
         res[tor_id] = [tor_star,tor_youhui,tor_size,tor_title,tor_time,tor_seed]
         nowfind+=1
         if nowfind == maxfind :break
